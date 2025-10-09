@@ -1,7 +1,7 @@
 
   # Formulario de Registro Médico
 
-  This is a code bundle for Formulario de Registro Médico. The original project is available at https://www.figma.com/design/DUQNs7992lYG34Z4qEdwJN/Formulario-de-Registro-M%C3%A9dico.
+  sqa grupo a 
 
   ## Running the code
 
