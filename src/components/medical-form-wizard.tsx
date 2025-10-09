@@ -5,6 +5,7 @@ import { LifestyleHabitsForm } from './forms/lifestyle-habits-form';
 import { FormSummary } from './forms/form-summary';
 import { Progress } from './ui/progress';
 import { CheckCircle2 } from 'lucide-react';
+import { store } from '../store';
 
 export type FormData = {
   // Datos personales
@@ -88,6 +89,8 @@ export function MedicalFormWizard({ onCompleted }: { onCompleted?: (data: FormDa
 
   const handleSubmit = () => {
     console.log('Formulario completado:', formData);
+    // Siempre persistimos el perfil en el store
+    try { store.saveProfile(formData); } catch {}
     if (onCompleted) {
       onCompleted(formData);
     } else {

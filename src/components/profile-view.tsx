@@ -9,8 +9,9 @@ import { Textarea } from "./ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
 import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
 import { Switch } from "./ui/switch";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from "./ui/dialog";
+// Dialog eliminado para evitar bloqueos; se usa formulario inline
 import { MapPin, Clock, AlertCircle, CheckCircle2, User, Heart, Activity, BellPlus, BellRing } from "lucide-react";
+import { toast } from "sonner";
 
 function useGeolocation() {
   const [coords, setCoords] = React.useState<{ lat: number; lng: number; accuracy?: number } | undefined>();
@@ -38,7 +39,7 @@ function useGeolocation() {
 export function ProfileView() {
   const { profile, alerts } = useAppState();
   const [descripcion, setDescripcion] = React.useState("");
-  const [open, setOpen] = React.useState(false);
+  const [showDetailed, setShowDetailed] = React.useState(false);
   const [tipo, setTipo] = React.useState("Desmayo");
   const [severidad, setSeveridad] = React.useState<"baja"|"media"|"alta"|"critica">("alta");
   const [ubicacionTexto, setUbicacionTexto] = React.useState("");
@@ -71,7 +72,7 @@ export function ProfileView() {
     );
   }
 
-  const onSendAlert = async () => {
+  const submitAlert = async () => {
     setSubmitting(true);
     try {
       const ubicacion = usarGPS && coords ? { ...coords } :
@@ -87,7 +88,8 @@ export function ProfileView() {
         paciente: paciente || profile?.nombreCompleto || undefined,
       });
       setDescripcion("");
-      setOpen(false);
+      setShowDetailed(false);
+      toast.success("Alerta enviada", { description: `${tipo} • ${new Date().toLocaleTimeString()}` });
     } finally {
       setSubmitting(false);
     }
@@ -198,18 +200,15 @@ export function ProfileView() {
         </h3>
         <p className="text-sm text-gray-600">Un clic para generar una alerta inmediata con tu ubicación y hora actual.</p>
         <div className="flex flex-col sm:flex-row gap-3">
-          <Button onClick={onSendAlert} disabled={submitting} className="bg-red-600 hover:bg-red-700 flex-1 py-6 text-base">
+          <Button onClick={submitAlert} disabled={submitting} className="bg-red-600 hover:bg-red-700 flex-1 py-6 text-base">
             {submitting ? <BellRing className="w-5 h-5 mr-2" /> : <BellPlus className="w-5 h-5 mr-2" />}
             Enviar alerta inmediata
           </Button>
-          <Dialog open={open} onOpenChange={setOpen}>
-            <DialogTrigger asChild>
-              <Button variant="outline" className="flex-1 py-6 text-base">Formulario detallado…</Button>
-            </DialogTrigger>
-            <DialogContent>
-              <DialogHeader>
-                <DialogTitle>Nueva Alerta Médica</DialogTitle>
-              </DialogHeader>
+          <Button variant="outline" className="flex-1 py-6 text-base" onClick={() => setShowDetailed((s)=>!s)}>Formulario detallado…</Button>
+        </div>
+        {showDetailed && (
+          <form className="mt-4 border rounded-lg p-4 space-y-4" onSubmit={(e) => { e.preventDefault(); submitAlert(); }}>
+              <h3 className="text-lg font-medium">Nueva Alerta Médica</h3>
               <div className="grid gap-4">
                 <div className="grid md:grid-cols-2 gap-3">
                   <div className="space-y-1">
@@ -284,16 +283,16 @@ export function ProfileView() {
                     )}
                   </div>
                 </div>
-              </div>
-              <DialogFooter>
-                <Button onClick={onSendAlert} disabled={submitting} className="bg-red-600 hover:bg-red-700">
-                  {submitting ? <BellRing className="w-4 h-4 mr-2" /> : <BellPlus className="w-4 h-4 mr-2" />}
-                  Enviar alerta
-                </Button>
-              </DialogFooter>
-            </DialogContent>
-          </Dialog>
-        </div>
+                <div className="flex gap-2 justify-end">
+                  <Button type="button" variant="outline" onClick={()=>setShowDetailed(false)}>Cancelar</Button>
+                  <Button type="submit" disabled={submitting} className="bg-red-600 hover:bg-red-700">
+                    {submitting ? <BellRing className="w-4 h-4 mr-2" /> : <BellPlus className="w-4 h-4 mr-2" />}
+                    Enviar alerta
+                  </Button>
+                </div>
+            </div>
+          </form>
+        )}
         <div className="flex gap-2 text-xs text-gray-600">
           <span className="px-2 py-1 rounded bg-gray-100">Plantillas:</span>
           {[
@@ -301,7 +300,7 @@ export function ProfileView() {
             {t:"Caída", s:"media", d:"Caída en escaleras"},
             {t:"Dolor torácico", s:"critica", d:"Dolor torácico, sudoración"},
           ].map(p => (
-            <button key={p.t} className="px-2 py-1 rounded border hover:bg-gray-50" onClick={()=>{ setTipo(p.t); setSeveridad(p.s as any); setDescripcion(p.d); setOpen(true); }}>
+            <button key={p.t} className="px-2 py-1 rounded border hover:bg-gray-50" onClick={()=>{ setTipo(p.t); setSeveridad(p.s as any); setDescripcion(p.d); setShowDetailed(true); }}>
               {p.t}
             </button>
           ))}

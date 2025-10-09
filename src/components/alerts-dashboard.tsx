@@ -5,7 +5,7 @@ import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
 import { MapPin, Clock, CheckCircle2 } from "lucide-react";
 
-export function AlertsDashboard() {
+export function AlertsDashboard({ onCreateNew }: { onCreateNew?: () => void }) {
   const { alerts } = useAppState();
   const [filter, setFilter] = React.useState<"todas" | "pendientes" | "resueltas">("pendientes");
 
@@ -35,6 +35,7 @@ export function AlertsDashboard() {
           <span className="inline-block w-5 h-5 rounded-full bg-rose-600" /> Centro de Alertas
         </h1>
         <div className="flex gap-2 text-sm">
+          <Button onClick={onCreateNew} className="bg-red-600 hover:bg-red-700">Nueva Alerta</Button>
           <Button variant={filter === 'pendientes' ? 'default' : 'outline'} onClick={() => setFilter('pendientes')}>Pendientes</Button>
           <Button variant={filter === 'resueltas' ? 'default' : 'outline'} onClick={() => setFilter('resueltas')}>Resueltas</Button>
           <Button variant={filter === 'todas' ? 'default' : 'outline'} onClick={() => setFilter('todas')}>Todas</Button>
