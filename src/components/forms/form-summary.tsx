@@ -1,7 +1,7 @@
-import { FormData } from '../medical-form-wizard';
-import { Button } from '../ui/button';
-import { Card } from '../ui/card';
-import { ChevronLeft, User, Heart, Activity, Check } from 'lucide-react';
+import { FormData } from "../medical-form-wizard";
+import { Button } from "../ui/button";
+import { Card } from "../ui/card";
+import { ChevronLeft, User, Heart, Activity, Check } from "lucide-react";
 
 type Props = {
   formData: FormData;
@@ -11,46 +11,46 @@ type Props = {
 
 export function FormSummary({ formData, onBack, onSubmit }: Props) {
   const formatEnfermedades = () => {
-    if (formData.enfermedadesCronicas.includes('ninguna')) {
-      return 'Ninguna';
+    if (formData.enfermedadesCronicas.includes("ninguna")) {
+      return "Ninguna";
     }
-    const enfermedades = formData.enfermedadesCronicas.map(e => {
-      if (e === 'otra') return formData.otraEnfermedad;
+    const enfermedades = formData.enfermedadesCronicas.map((e) => {
+      if (e === "otra") return formData.otraEnfermedad;
       return e.charAt(0).toUpperCase() + e.slice(1);
     });
-    return enfermedades.join(', ');
+    return enfermedades.join(", ");
   };
 
   const formatFrecuenciaActividad = (freq: string) => {
     const labels: Record<string, string> = {
-      '1-2-semana': '1-2 veces por semana',
-      '3-4-semana': '3-4 veces por semana',
-      '5-mas-semana': '5 o más veces por semana',
-      'diario': 'Todos los días',
+      "1-2-semana": "1-2 veces por semana",
+      "3-4-semana": "3-4 veces por semana",
+      "5-mas-semana": "5 o más veces por semana",
+      diario: "Todos los días",
     };
     return labels[freq] || freq;
   };
 
   const formatAlimentacion = (alim: string) => {
     const labels: Record<string, string> = {
-      'muy-saludable': 'Muy saludable',
-      'saludable': 'Saludable',
-      'regular': 'Regular',
-      'poco-saludable': 'Poco saludable',
-      'poco-balanceada': 'Poco balanceada',
+      "muy-saludable": "Muy saludable",
+      saludable: "Saludable",
+      regular: "Regular",
+      "poco-saludable": "Poco saludable",
+      "poco-balanceada": "Poco balanceada",
     };
     return labels[alim] || alim;
   };
 
   const getEstresLabel = (value: string) => {
     const labels: Record<string, string> = {
-      '1': 'Muy bajo (1)',
-      '2': 'Bajo (2)',
-      '3': 'Moderado (3)',
-      '4': 'Alto (4)',
-      '5': 'Muy alto (5)',
+      "1": "Muy bajo (1)",
+      "2": "Bajo (2)",
+      "3": "Moderado (3)",
+      "4": "Alto (4)",
+      "5": "Muy alto (5)",
     };
-    return labels[value] || 'Moderado (3)';
+    return labels[value] || "Moderado (3)";
   };
 
   return (
@@ -105,9 +105,9 @@ export function FormSummary({ formData, onBack, onSubmit }: Props) {
           <div>
             <p className="text-gray-500">Seguro médico</p>
             <p>
-              {formData.tieneSeguro === 'si'
+              {formData.tieneSeguro === "si"
                 ? `Sí - ${formData.nombreAseguradora}`
-                : 'No posee'}
+                : "No posee"}
             </p>
           </div>
         </div>
@@ -128,7 +128,9 @@ export function FormSummary({ formData, onBack, onSubmit }: Props) {
           </div>
           <div>
             <p className="text-gray-500">Medicamentos regulares</p>
-            <p className="whitespace-pre-line">{formData.medicamentosRegulares}</p>
+            <p className="whitespace-pre-line">
+              {formData.medicamentosRegulares}
+            </p>
           </div>
           <div>
             <p className="text-gray-500">Cirugías anteriores</p>
@@ -141,15 +143,17 @@ export function FormSummary({ formData, onBack, onSubmit }: Props) {
           {formData.hospitalizacionesPrevias && (
             <div>
               <p className="text-gray-500">Hospitalizaciones previas</p>
-              <p className="whitespace-pre-line">{formData.hospitalizacionesPrevias}</p>
+              <p className="whitespace-pre-line">
+                {formData.hospitalizacionesPrevias}
+              </p>
             </div>
           )}
           <div>
             <p className="text-gray-500">Discapacidad</p>
             <p>
-              {formData.tieneDiscapacidad === 'si'
+              {formData.tieneDiscapacidad === "si"
                 ? formData.descripcionDiscapacidad
-                : 'Ninguna'}
+                : "Ninguna"}
             </p>
           </div>
         </div>
@@ -167,7 +171,13 @@ export function FormSummary({ formData, onBack, onSubmit }: Props) {
           <div className="grid grid-cols-2 gap-2">
             <div>
               <p className="text-gray-500">Fumador</p>
-              <p className="capitalize">{formData.fuma === 'no' ? 'No' : formData.fuma === 'si' ? 'Sí' : formData.fuma.replace('-', ' ')}</p>
+              <p className="capitalize">
+                {formData.fuma === "no"
+                  ? "No"
+                  : formData.fuma === "si"
+                  ? "Sí"
+                  : formData.fuma.replace("-", " ")}
+              </p>
             </div>
             <div>
               <p className="text-gray-500">Consume alcohol</p>
@@ -177,9 +187,11 @@ export function FormSummary({ formData, onBack, onSubmit }: Props) {
           <div>
             <p className="text-gray-500">Actividad física</p>
             <p>
-              {formData.actividadFisica === 'si'
-                ? `Sí - ${formatFrecuenciaActividad(formData.frecuenciaActividad)}`
-                : 'No realiza'}
+              {formData.actividadFisica === "si"
+                ? `Sí - ${formatFrecuenciaActividad(
+                    formData.frecuenciaActividad
+                  )}`
+                : "No realiza"}
             </p>
           </div>
           {formData.alimentacion && (
@@ -204,11 +216,20 @@ export function FormSummary({ formData, onBack, onSubmit }: Props) {
       </Card>
 
       <div className="flex gap-3 pt-4">
-        <Button type="button" variant="outline" onClick={onBack} className="flex-1">
+        <Button
+          type="button"
+          variant="outline"
+          onClick={onBack}
+          className="flex-1"
+        >
           <ChevronLeft className="w-4 h-4 mr-2" />
           Atrás
         </Button>
-        <Button type="button" onClick={onSubmit} className="flex-1 bg-green-600 hover:bg-green-700">
+        <Button
+          type="button"
+          onClick={onSubmit}
+          className="flex-1 bg-green-600 hover:bg-green-700"
+        >
           <Check className="w-4 h-4 mr-2" />
           Enviar Formulario
         </Button>
@@ -216,4 +237,3 @@ export function FormSummary({ formData, onBack, onSubmit }: Props) {
     </div>
   );
 }
-

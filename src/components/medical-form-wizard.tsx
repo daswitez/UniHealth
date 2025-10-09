@@ -40,7 +40,7 @@ export type FormData = {
   nivelEstres: string;
 };
 
-export function MedicalFormWizard() {
+export function MedicalFormWizard({ onCompleted }: { onCompleted?: (data: FormData) => void }) {
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState<FormData>({
     nombreCompleto: '',
@@ -88,7 +88,11 @@ export function MedicalFormWizard() {
 
   const handleSubmit = () => {
     console.log('Formulario completado:', formData);
-    setIsSubmitted(true);
+    if (onCompleted) {
+      onCompleted(formData);
+    } else {
+      setIsSubmitted(true);
+    }
   };
 
   const getStepTitle = () => {
