@@ -1,4 +1,4 @@
-﻿import { useState } from 'react';
+import { useState } from 'react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
@@ -27,13 +27,13 @@ export function MedicalRegistrationForm({ onSubmitSuccess }: MedicalRegistration
     telefonoEmergencia: '',
     relacionEmergencia: '',
     
-    // Historial mÃ©dico
+    // Historial médico
     alergias: '',
     medicamentos: '',
     condicionesPreexistentes: [] as string[],
     cirugiasPrevias: '',
     
-    // InformaciÃ³n adicional
+    // Información adicional
     notasAdicionales: '',
   });
 
@@ -61,10 +61,10 @@ export function MedicalRegistrationForm({ onSubmitSuccess }: MedicalRegistration
     if (!formData.nombre.trim()) newErrors.nombre = 'El nombre es obligatorio';
     if (!formData.apellidos.trim()) newErrors.apellidos = 'Los apellidos son obligatorios';
     if (!formData.fechaNacimiento) newErrors.fechaNacimiento = 'La fecha de nacimiento es obligatoria';
-    if (!formData.telefono.trim()) newErrors.telefono = 'El telÃ©fono es obligatorio';
+    if (!formData.telefono.trim()) newErrors.telefono = 'El teléfono es obligatorio';
     if (!formData.tipoSangre) newErrors.tipoSangre = 'El tipo de sangre es obligatorio';
     if (!formData.nombreEmergencia.trim()) newErrors.nombreEmergencia = 'El contacto de emergencia es obligatorio';
-    if (!formData.telefonoEmergencia.trim()) newErrors.telefonoEmergencia = 'El telÃ©fono de emergencia es obligatorio';
+    if (!formData.telefonoEmergencia.trim()) newErrors.telefonoEmergencia = 'El teléfono de emergencia es obligatorio';
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -100,13 +100,13 @@ export function MedicalRegistrationForm({ onSubmitSuccess }: MedicalRegistration
 
   const condicionesMedicas = [
     'Diabetes',
-    'HipertensiÃ³n',
+    'Hipertensión',
     'Asma',
-    'Enfermedad cardÃ­aca',
+    'Enfermedad cardíaca',
     'Epilepsia',
     'Artritis',
     'Tiroides',
-    'CÃ¡ncer',
+    'Cáncer',
   ];
 
   return (
@@ -161,7 +161,7 @@ export function MedicalRegistrationForm({ onSubmitSuccess }: MedicalRegistration
 
           <div className="space-y-2">
             <Label htmlFor="telefono">
-              TelÃ©fono <span className="text-red-500">*</span>
+              Teléfono <span className="text-red-500">*</span>
             </Label>
             <Input
               id="telefono"
@@ -186,12 +186,12 @@ export function MedicalRegistrationForm({ onSubmitSuccess }: MedicalRegistration
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="direccion">DirecciÃ³n</Label>
+            <Label htmlFor="direccion">Dirección</Label>
             <Input
               id="direccion"
               value={formData.direccion}
               onChange={(e) => handleInputChange('direccion', e.target.value)}
-              placeholder="Calle, nÃºmero, ciudad"
+              placeholder="Calle, número, ciudad"
             />
           </div>
 
@@ -241,7 +241,7 @@ export function MedicalRegistrationForm({ onSubmitSuccess }: MedicalRegistration
 
           <div className="space-y-2">
             <Label htmlFor="telefonoEmergencia">
-              TelÃ©fono <span className="text-red-500">*</span>
+              Teléfono <span className="text-red-500">*</span>
             </Label>
             <Input
               id="telefonoEmergencia"
@@ -255,16 +255,16 @@ export function MedicalRegistrationForm({ onSubmitSuccess }: MedicalRegistration
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="relacionEmergencia">RelaciÃ³n</Label>
+            <Label htmlFor="relacionEmergencia">Relación</Label>
             <Select value={formData.relacionEmergencia} onValueChange={(value) => handleInputChange('relacionEmergencia', value)}>
               <SelectTrigger>
-                <SelectValue placeholder="Seleccione la relaciÃ³n" />
+                <SelectValue placeholder="Seleccione la relación" />
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="padre">Padre/Madre</SelectItem>
                 <SelectItem value="hijo">Hijo/Hija</SelectItem>
                 <SelectItem value="hermano">Hermano/Hermana</SelectItem>
-                <SelectItem value="conyuge">CÃ³nyuge</SelectItem>
+                <SelectItem value="conyuge">Cónyuge</SelectItem>
                 <SelectItem value="pareja">Pareja</SelectItem>
                 <SelectItem value="amigo">Amigo/Amiga</SelectItem>
                 <SelectItem value="otro">Otro</SelectItem>
@@ -274,10 +274,10 @@ export function MedicalRegistrationForm({ onSubmitSuccess }: MedicalRegistration
         </CardContent>
       </Card>
 
-      {/* Historial MÃ©dico */}
+      {/* Historial Médico */}
       <Card>
         <CardHeader>
-          <CardTitle>Historial MÃ©dico</CardTitle>
+          <CardTitle>Historial Médico</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="space-y-2">
@@ -303,7 +303,7 @@ export function MedicalRegistrationForm({ onSubmitSuccess }: MedicalRegistration
           </div>
 
           <div className="space-y-3">
-            <Label>Condiciones MÃ©dicas Preexistentes</Label>
+            <Label>Condiciones Médicas Preexistentes</Label>
             <div className="space-y-2">
               {condicionesMedicas.map((condicion) => (
                 <div key={condicion} className="flex items-center space-x-2">
@@ -321,12 +321,12 @@ export function MedicalRegistrationForm({ onSubmitSuccess }: MedicalRegistration
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="cirugiasPrevias">CirugÃ­as Previas</Label>
+            <Label htmlFor="cirugiasPrevias">Cirugías Previas</Label>
             <Textarea
               id="cirugiasPrevias"
               value={formData.cirugiasPrevias}
               onChange={(e) => handleInputChange('cirugiasPrevias', e.target.value)}
-              placeholder="Describa cirugÃ­as previas y fechas aproximadas"
+              placeholder="Describa cirugías previas y fechas aproximadas"
               rows={3}
             />
           </div>
@@ -337,7 +337,7 @@ export function MedicalRegistrationForm({ onSubmitSuccess }: MedicalRegistration
               id="notasAdicionales"
               value={formData.notasAdicionales}
               onChange={(e) => handleInputChange('notasAdicionales', e.target.value)}
-              placeholder="Cualquier informaciÃ³n adicional relevante"
+              placeholder="Cualquier información adicional relevante"
               rows={3}
             />
           </div>

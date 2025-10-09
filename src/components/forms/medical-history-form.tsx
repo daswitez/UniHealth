@@ -1,4 +1,4 @@
-﻿import { useState } from 'react';
+import { useState } from 'react';
 import { FormData } from '../medical-form-wizard';
 import { Input } from '../ui/input';
 import { Label } from '../ui/label';
@@ -16,9 +16,9 @@ type Props = {
 
 const enfermedadesComunues = [
   { id: 'diabetes', label: 'Diabetes' },
-  { id: 'hipertension', label: 'HipertensiÃ³n' },
+  { id: 'hipertension', label: 'Hipertensión' },
   { id: 'asma', label: 'Asma' },
-  { id: 'cardiopatia', label: 'CardiopatÃ­a' },
+  { id: 'cardiopatia', label: 'Cardiopatía' },
   { id: 'tiroides', label: 'Problemas de tiroides' },
   { id: 'artritis', label: 'Artritis' },
   { id: 'ninguna', label: 'Ninguna' },
@@ -71,7 +71,7 @@ export function MedicalHistoryForm({ initialData, onNext, onBack }: Props) {
     const newErrors: Record<string, string> = {};
 
     if (formData.enfermedadesCronicas.length === 0) {
-      newErrors.enfermedadesCronicas = 'Debe seleccionar al menos una opciÃ³n';
+      newErrors.enfermedadesCronicas = 'Debe seleccionar al menos una opción';
     }
     if (formData.enfermedadesCronicas.includes('otra') && !formData.otraEnfermedad.trim()) {
       newErrors.otraEnfermedad = 'Por favor especifique la enfermedad';
@@ -80,7 +80,7 @@ export function MedicalHistoryForm({ initialData, onNext, onBack }: Props) {
       newErrors.medicamentosRegulares = 'Campo obligatorio. Si no toma medicamentos, escriba "Ninguno"';
     }
     if (!formData.cirugiasAnteriores.trim()) {
-      newErrors.cirugiasAnteriores = 'Campo obligatorio. Si no ha tenido cirugÃ­as, escriba "Ninguna"';
+      newErrors.cirugiasAnteriores = 'Campo obligatorio. Si no ha tenido cirugías, escriba "Ninguna"';
     }
     if (!formData.alergias.trim()) {
       newErrors.alergias = 'Campo obligatorio. Si no tiene alergias, escriba "Ninguna"';
@@ -107,7 +107,7 @@ export function MedicalHistoryForm({ initialData, onNext, onBack }: Props) {
     <form onSubmit={handleSubmit} className="space-y-5">
       <div>
         <Label>
-          Â¿Padece actualmente alguna enfermedad crÃ³nica? <span className="text-red-500">*</span>
+          ¿Padece actualmente alguna enfermedad crónica? <span className="text-red-500">*</span>
         </Label>
         <p className="text-xs text-gray-500 mb-3">Seleccione todas las que apliquen</p>
         <div className="space-y-3">
@@ -149,14 +149,14 @@ export function MedicalHistoryForm({ initialData, onNext, onBack }: Props) {
 
       <div>
         <Label htmlFor="medicamentosRegulares">
-          Â¿Toma algÃºn medicamento de forma regular? <span className="text-red-500">*</span>
+          ¿Toma algún medicamento de forma regular? <span className="text-red-500">*</span>
         </Label>
         <p className="text-xs text-gray-500 mb-2">Incluya nombre y dosis. Si no toma, escriba "Ninguno"</p>
         <Textarea
           id="medicamentosRegulares"
           value={formData.medicamentosRegulares}
           onChange={(e) => handleChange('medicamentosRegulares', e.target.value)}
-          placeholder="Ej: LosartÃ¡n 50mg cada 12 horas&#10;Metformina 850mg con las comidas"
+          placeholder="Ej: Losartán 50mg cada 12 horas&#10;Metformina 850mg con las comidas"
           rows={3}
           className={errors.medicamentosRegulares ? 'border-red-500' : ''}
         />
@@ -167,14 +167,14 @@ export function MedicalHistoryForm({ initialData, onNext, onBack }: Props) {
 
       <div>
         <Label htmlFor="cirugiasAnteriores">
-          Â¿Ha tenido alguna cirugÃ­a o procedimiento importante? <span className="text-red-500">*</span>
+          ¿Ha tenido alguna cirugía o procedimiento importante? <span className="text-red-500">*</span>
         </Label>
-        <p className="text-xs text-gray-500 mb-2">Incluya el tipo de cirugÃ­a y aÃ±o. Si no ha tenido, escriba "Ninguna"</p>
+        <p className="text-xs text-gray-500 mb-2">Incluya el tipo de cirugía y año. Si no ha tenido, escriba "Ninguna"</p>
         <Textarea
           id="cirugiasAnteriores"
           value={formData.cirugiasAnteriores}
           onChange={(e) => handleChange('cirugiasAnteriores', e.target.value)}
-          placeholder="Ej: ApendicectomÃ­a - 2018&#10;CesÃ¡rea - 2020"
+          placeholder="Ej: Apendicectomía - 2018&#10;Cesárea - 2020"
           rows={3}
           className={errors.cirugiasAnteriores ? 'border-red-500' : ''}
         />
@@ -185,14 +185,14 @@ export function MedicalHistoryForm({ initialData, onNext, onBack }: Props) {
 
       <div>
         <Label htmlFor="alergias">
-          Â¿Es alÃ©rgico a algÃºn medicamento, alimento o sustancia? <span className="text-red-500">*</span>
+          ¿Es alérgico a algún medicamento, alimento o sustancia? <span className="text-red-500">*</span>
         </Label>
         <p className="text-xs text-gray-500 mb-2">Si no tiene alergias, escriba "Ninguna"</p>
         <Textarea
           id="alergias"
           value={formData.alergias}
           onChange={(e) => handleChange('alergias', e.target.value)}
-          placeholder="Ej: Penicilina, mariscos, lÃ¡tex"
+          placeholder="Ej: Penicilina, mariscos, látex"
           rows={2}
           className={errors.alergias ? 'border-red-500' : ''}
         />
@@ -203,21 +203,21 @@ export function MedicalHistoryForm({ initialData, onNext, onBack }: Props) {
 
       <div>
         <Label htmlFor="hospitalizacionesPrevias">
-          Â¿Ha sido hospitalizado anteriormente? (opcional)
+          ¿Ha sido hospitalizado anteriormente? (opcional)
         </Label>
-        <p className="text-xs text-gray-500 mb-2">Incluya el motivo y aÃ±o</p>
+        <p className="text-xs text-gray-500 mb-2">Incluya el motivo y año</p>
         <Textarea
           id="hospitalizacionesPrevias"
           value={formData.hospitalizacionesPrevias}
           onChange={(e) => handleChange('hospitalizacionesPrevias', e.target.value)}
-          placeholder="Ej: NeumonÃ­a - 2019"
+          placeholder="Ej: Neumonía - 2019"
           rows={2}
         />
       </div>
 
       <div>
         <Label>
-          Â¿Padece alguna discapacidad fÃ­sica o mental? <span className="text-red-500">*</span>
+          ¿Padece alguna discapacidad física o mental? <span className="text-red-500">*</span>
         </Label>
         <RadioGroup
           value={formData.tieneDiscapacidad}
@@ -226,7 +226,7 @@ export function MedicalHistoryForm({ initialData, onNext, onBack }: Props) {
         >
           <div className="flex items-center space-x-2">
             <RadioGroupItem value="si" id="discapacidad-si" />
-            <Label htmlFor="discapacidad-si" className="cursor-pointer">SÃ­</Label>
+            <Label htmlFor="discapacidad-si" className="cursor-pointer">Sí</Label>
           </div>
           <div className="flex items-center space-x-2">
             <RadioGroupItem value="no" id="discapacidad-no" />
@@ -241,7 +241,7 @@ export function MedicalHistoryForm({ initialData, onNext, onBack }: Props) {
       {formData.tieneDiscapacidad === 'si' && (
         <div>
           <Label htmlFor="descripcionDiscapacidad">
-            DescripciÃ³n de la discapacidad <span className="text-red-500">*</span>
+            Descripción de la discapacidad <span className="text-red-500">*</span>
           </Label>
           <Textarea
             id="descripcionDiscapacidad"
@@ -260,7 +260,7 @@ export function MedicalHistoryForm({ initialData, onNext, onBack }: Props) {
       <div className="flex gap-3 pt-4">
         <Button type="button" variant="outline" onClick={onBack} className="flex-1">
           <ChevronLeft className="w-4 h-4 mr-2" />
-          AtrÃ¡s
+          Atrás
         </Button>
         <Button type="submit" className="flex-1">
           Continuar

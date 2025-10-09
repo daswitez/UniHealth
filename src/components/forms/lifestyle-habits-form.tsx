@@ -1,4 +1,4 @@
-﻿import { useState } from 'react';
+import { useState } from 'react';
 import { FormData } from '../medical-form-wizard';
 import { Input } from '../ui/input';
 import { Label } from '../ui/label';
@@ -76,7 +76,7 @@ export function LifestyleHabitsForm({ initialData, onNext, onBack }: Props) {
     <form onSubmit={handleSubmit} className="space-y-5">
       <div>
         <Label>
-          Â¿Fuma o ha fumado alguna vez? <span className="text-red-500">*</span>
+          ¿Fuma o ha fumado alguna vez? <span className="text-red-500">*</span>
         </Label>
         <RadioGroup
           value={formData.fuma}
@@ -93,7 +93,7 @@ export function LifestyleHabitsForm({ initialData, onNext, onBack }: Props) {
           </div>
           <div className="flex items-center space-x-2">
             <RadioGroupItem value="si" id="fuma-si" />
-            <Label htmlFor="fuma-si" className="cursor-pointer">SÃ­, regularmente</Label>
+            <Label htmlFor="fuma-si" className="cursor-pointer">Sí, regularmente</Label>
           </div>
           <div className="flex items-center space-x-2">
             <RadioGroupItem value="ex-fumador" id="fuma-ex" />
@@ -107,7 +107,7 @@ export function LifestyleHabitsForm({ initialData, onNext, onBack }: Props) {
 
       <div>
         <Label>
-          Â¿Consume alcohol? <span className="text-red-500">*</span>
+          ¿Consume alcohol? <span className="text-red-500">*</span>
         </Label>
         <RadioGroup
           value={formData.consumeAlcohol}
@@ -134,7 +134,7 @@ export function LifestyleHabitsForm({ initialData, onNext, onBack }: Props) {
 
       <div>
         <Label>
-          Â¿Realiza actividad fÃ­sica regularmente? <span className="text-red-500">*</span>
+          ¿Realiza actividad física regularmente? <span className="text-red-500">*</span>
         </Label>
         <RadioGroup
           value={formData.actividadFisica}
@@ -143,7 +143,7 @@ export function LifestyleHabitsForm({ initialData, onNext, onBack }: Props) {
         >
           <div className="flex items-center space-x-2">
             <RadioGroupItem value="si" id="actividad-si" />
-            <Label htmlFor="actividad-si" className="cursor-pointer">SÃ­</Label>
+            <Label htmlFor="actividad-si" className="cursor-pointer">Sí</Label>
           </div>
           <div className="flex items-center space-x-2">
             <RadioGroupItem value="no" id="actividad-no" />
@@ -158,7 +158,7 @@ export function LifestyleHabitsForm({ initialData, onNext, onBack }: Props) {
       {formData.actividadFisica === 'si' && (
         <div>
           <Label htmlFor="frecuenciaActividad">
-            Frecuencia de actividad fÃ­sica <span className="text-red-500">*</span>
+            Frecuencia de actividad física <span className="text-red-500">*</span>
           </Label>
           <Select
             value={formData.frecuenciaActividad}
@@ -170,8 +170,8 @@ export function LifestyleHabitsForm({ initialData, onNext, onBack }: Props) {
             <SelectContent>
               <SelectItem value="1-2-semana">1-2 veces por semana</SelectItem>
               <SelectItem value="3-4-semana">3-4 veces por semana</SelectItem>
-              <SelectItem value="5-mas-semana">5 o mÃ¡s veces por semana</SelectItem>
-              <SelectItem value="diario">Todos los dÃ­as</SelectItem>
+              <SelectItem value="5-mas-semana">5 o más veces por semana</SelectItem>
+              <SelectItem value="diario">Todos los días</SelectItem>
             </SelectContent>
           </Select>
           {errors.frecuenciaActividad && (
@@ -182,14 +182,14 @@ export function LifestyleHabitsForm({ initialData, onNext, onBack }: Props) {
 
       <div>
         <Label htmlFor="alimentacion">
-          Â¿CÃ³mo describirÃ­a su alimentaciÃ³n diaria? (opcional)
+          ¿Cómo describiría su alimentación diaria? (opcional)
         </Label>
         <Select
           value={formData.alimentacion}
           onValueChange={(value) => handleChange('alimentacion', value)}
         >
           <SelectTrigger id="alimentacion">
-            <SelectValue placeholder="Seleccione una opciÃ³n" />
+            <SelectValue placeholder="Seleccione una opción" />
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="muy-saludable">Muy saludable</SelectItem>
@@ -203,7 +203,7 @@ export function LifestyleHabitsForm({ initialData, onNext, onBack }: Props) {
 
       <div>
         <Label htmlFor="horasSueno">
-          Horas de sueÃ±o promedio (opcional)
+          Horas de sueño promedio (opcional)
         </Label>
         <Input
           id="horasSueno"
@@ -219,7 +219,7 @@ export function LifestyleHabitsForm({ initialData, onNext, onBack }: Props) {
 
       <div>
         <Label htmlFor="nivelEstres">
-          Nivel de estrÃ©s (opcional)
+          Nivel de estrés (opcional)
         </Label>
         <div className="space-y-3 mt-3">
           <div className="flex justify-between text-sm text-gray-600">
@@ -249,7 +249,7 @@ export function LifestyleHabitsForm({ initialData, onNext, onBack }: Props) {
       <div className="flex gap-3 pt-4">
         <Button type="button" variant="outline" onClick={onBack} className="flex-1">
           <ChevronLeft className="w-4 h-4 mr-2" />
-          AtrÃ¡s
+          Atrás
         </Button>
         <Button type="submit" className="flex-1">
           Continuar

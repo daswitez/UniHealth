@@ -1,4 +1,4 @@
-﻿import { useState } from 'react';
+import { useState } from 'react';
 import { PersonalDataForm } from './forms/personal-data-form';
 import { MedicalHistoryForm } from './forms/medical-history-form';
 import { LifestyleHabitsForm } from './forms/lifestyle-habits-form';
@@ -20,7 +20,7 @@ export type FormData = {
   tieneSeguro: string;
   nombreAseguradora: string;
   
-  // Antecedentes mÃ©dicos
+  // Antecedentes médicos
   enfermedadesCronicas: string[];
   otraEnfermedad: string;
   medicamentosRegulares: string;
@@ -30,7 +30,7 @@ export type FormData = {
   tieneDiscapacidad: string;
   descripcionDiscapacidad: string;
   
-  // HÃ¡bitos y estilo de vida
+  // Hábitos y estilo de vida
   fuma: string;
   consumeAlcohol: string;
   actividadFisica: string;
@@ -94,13 +94,13 @@ export function MedicalFormWizard() {
   const getStepTitle = () => {
     switch (currentStep) {
       case 1:
-        return 'ðŸ§â€â™‚ï¸ Datos Personales';
+        return '🧍‍♂️ Datos Personales';
       case 2:
-        return 'â¤ï¸ Antecedentes MÃ©dicos';
+        return '❤️ Antecedentes Médicos';
       case 3:
-        return 'ðŸƒâ€â™‚ï¸ HÃ¡bitos y Estilo de Vida';
+        return '🏃‍♂️ Hábitos y Estilo de Vida';
       case 4:
-        return 'ðŸ“‹ Resumen';
+        return '📋 Resumen';
       default:
         return '';
     }
@@ -113,9 +113,9 @@ export function MedicalFormWizard() {
           <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
             <CheckCircle2 className="w-10 h-10 text-green-600" />
           </div>
-          <h2 className="text-green-600 mb-2">Â¡Registro Completado!</h2>
+          <h2 className="text-green-600 mb-2">¡Registro Completado!</h2>
           <p className="text-gray-600 mb-6">
-            Su historial mÃ©dico ha sido registrado exitosamente
+            Su historial médico ha sido registrado exitosamente
           </p>
           <button
             onClick={() => {
@@ -164,7 +164,7 @@ export function MedicalFormWizard() {
       {/* Header */}
       <div className="mb-6">
         <div className="text-center mb-4">
-          <h1 className="text-blue-600 mb-1">Historial MÃ©dico Digital</h1>
+          <h1 className="text-blue-600 mb-1">Historial Médico Digital</h1>
           <p className="text-gray-600 text-sm">{getStepTitle()}</p>
         </div>
 

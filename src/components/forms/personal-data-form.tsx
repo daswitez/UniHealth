@@ -1,4 +1,4 @@
-﻿import { useState } from 'react';
+import { useState } from 'react';
 import { FormData } from '../medical-form-wizard';
 import { Input } from '../ui/input';
 import { Label } from '../ui/label';
@@ -110,7 +110,7 @@ export function PersonalDataForm({ initialData, onNext }: Props) {
 
       <div>
         <Label htmlFor="cedula">
-          CÃ©dula / DNI <span className="text-red-500">*</span>
+          Cédula / DNI <span className="text-red-500">*</span>
         </Label>
         <Input
           id="cedula"
@@ -150,7 +150,7 @@ export function PersonalDataForm({ initialData, onNext }: Props) {
             type="number"
             value={formData.edad}
             onChange={(e) => handleChange('edad', e.target.value)}
-            placeholder="AÃ±os"
+            placeholder="Años"
             className={errors.edad ? 'border-red-500' : ''}
           />
           {errors.edad && (
@@ -161,7 +161,7 @@ export function PersonalDataForm({ initialData, onNext }: Props) {
 
       <div>
         <Label>
-          Sexo biolÃ³gico <span className="text-red-500">*</span>
+          Sexo biológico <span className="text-red-500">*</span>
         </Label>
         <RadioGroup
           value={formData.sexoBiologico}
@@ -187,13 +187,13 @@ export function PersonalDataForm({ initialData, onNext }: Props) {
       </div>
 
       <div>
-        <Label htmlFor="identidadGenero">Identidad de gÃ©nero (opcional)</Label>
+        <Label htmlFor="identidadGenero">Identidad de género (opcional)</Label>
         <Select
           value={formData.identidadGenero}
           onValueChange={(value) => handleChange('identidadGenero', value)}
         >
           <SelectTrigger id="identidadGenero">
-            <SelectValue placeholder="Seleccione una opciÃ³n" />
+            <SelectValue placeholder="Seleccione una opción" />
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="masculino">Masculino</SelectItem>
@@ -212,12 +212,12 @@ export function PersonalDataForm({ initialData, onNext }: Props) {
           onValueChange={(value) => handleChange('estadoCivil', value)}
         >
           <SelectTrigger id="estadoCivil">
-            <SelectValue placeholder="Seleccione una opciÃ³n" />
+            <SelectValue placeholder="Seleccione una opción" />
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="soltero">Soltero/a</SelectItem>
             <SelectItem value="casado">Casado/a</SelectItem>
-            <SelectItem value="union-libre">UniÃ³n libre</SelectItem>
+            <SelectItem value="union-libre">Unión libre</SelectItem>
             <SelectItem value="divorciado">Divorciado/a</SelectItem>
             <SelectItem value="viudo">Viudo/a</SelectItem>
           </SelectContent>
@@ -226,13 +226,13 @@ export function PersonalDataForm({ initialData, onNext }: Props) {
 
       <div>
         <Label htmlFor="direccion">
-          DirecciÃ³n <span className="text-red-500">*</span>
+          Dirección <span className="text-red-500">*</span>
         </Label>
         <Input
           id="direccion"
           value={formData.direccion}
           onChange={(e) => handleChange('direccion', e.target.value)}
-          placeholder="Calle, ciudad, paÃ­s"
+          placeholder="Calle, ciudad, país"
           className={errors.direccion ? 'border-red-500' : ''}
         />
         {errors.direccion && (
@@ -242,7 +242,7 @@ export function PersonalDataForm({ initialData, onNext }: Props) {
 
       <div>
         <Label htmlFor="telefonoEmergencia">
-          TelÃ©fono / Contacto de emergencia <span className="text-red-500">*</span>
+          Teléfono / Contacto de emergencia <span className="text-red-500">*</span>
         </Label>
         <Input
           id="telefonoEmergencia"
@@ -259,7 +259,7 @@ export function PersonalDataForm({ initialData, onNext }: Props) {
 
       <div>
         <Label>
-          Â¿Posee seguro mÃ©dico? <span className="text-red-500">*</span>
+          ¿Posee seguro médico? <span className="text-red-500">*</span>
         </Label>
         <RadioGroup
           value={formData.tieneSeguro}
@@ -268,7 +268,7 @@ export function PersonalDataForm({ initialData, onNext }: Props) {
         >
           <div className="flex items-center space-x-2">
             <RadioGroupItem value="si" id="seguro-si" />
-            <Label htmlFor="seguro-si" className="cursor-pointer">SÃ­</Label>
+            <Label htmlFor="seguro-si" className="cursor-pointer">Sí</Label>
           </div>
           <div className="flex items-center space-x-2">
             <RadioGroupItem value="no" id="seguro-no" />
